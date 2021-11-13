@@ -53,7 +53,7 @@ router.post('/', (req, res) => {
   Category.create({
     category_name: req.body.category_name
   })
-  .then(dbPostData => res.json(dbPostData))
+  .then(data => res.json(data))
   .catch(err => {
     console.log(err);
     res.status(500).json(err);
@@ -72,7 +72,7 @@ router.put('/:id', (req, res) => {
       }
     })
     .then(data => {
-      if (!data[0]) {
+      if (!data) {
         res.status(404).json({ message: 'No category found with this id' });
         return;
       }

@@ -1,5 +1,4 @@
 const router = require('express').Router();
-const { UPSERT } = require('sequelize/types/lib/query-types');
 const { Tag, Product, ProductTag } = require('../../models');
 
 // The `/api/tags` endpoint
@@ -94,12 +93,12 @@ router.delete('/:id', (req, res) => {
       id: req.params.id
     }
   })
-  .then(dbPostData => {
-    if (!dbPostData) {
+  .then(data => {
+    if (!data) {
       res.status(404).json({ message: 'No tag found with this id' });
       return;
     }
-    res.json(dbPostData);
+    res.json(data);
   })
   .catch(err => {
     console.log(err);
