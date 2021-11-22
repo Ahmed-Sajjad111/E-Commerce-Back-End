@@ -9,10 +9,6 @@ router.get('/', (req, res) => {
     // include its associated Product data
     include: [
       {
-        model: ProductTag,
-        attributes: ['product_id', 'tag_id']
-      },
-      {
         model: Product,
         attributes: ['Product_name', 'price', 'stock', 'category_id']
       }
@@ -27,16 +23,12 @@ router.get('/', (req, res) => {
 
 router.get('/:id', (req, res) => {
   // find a single tag by its `id`
-  Tag.fineOne({
+  Tag.findOne({
     where: {
       id: req.params.id
     },
     // include its associated Product data
     include: [
-      {
-        model: ProductTag,
-        attributes: ['product_id', 'tag_id']
-      },
       {
         model: Product,
         attributes: ['Product_name', 'price', 'stock', 'category_id']
